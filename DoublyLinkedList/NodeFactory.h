@@ -7,10 +7,10 @@
 
 #include "Node.h"
 
- /**
-  * @class NodeFactory
-  * @brief Klasa fabryki odpowiedzialna za tworzenie nowych wezlow na stercie.
-  */
+/**
+ * @class NodeFactory
+ * @brief Klasa fabryki odpowiedzialna za tworzenie nowych wezlow na stercie.
+ */
 
 class NodeFactory {
 public:

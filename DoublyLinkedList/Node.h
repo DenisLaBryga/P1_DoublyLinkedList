@@ -5,10 +5,10 @@
  * @brief Plik naglowkowy klasy Node reprezentujacej pojedynczy wezel listy dwukierunkowej.
  */
 
- /**
-  * @class Node
-  * @brief Klasa reprezentujaca element (wezel) listy dwukierunkowej.
-  */
+/**
+ * @class Node
+ * @brief Klasa reprezentujaca element (wezel) listy dwukierunkowej.
+ */
 
 class Node {
 public:
