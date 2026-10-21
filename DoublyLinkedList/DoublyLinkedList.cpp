@@ -52,7 +52,7 @@ void DoublyLinkedList::pushBack(int val) {
 
 void DoublyLinkedList::insertAt(int index, int val) {
     if (index < 0 || index > size) {
-        cout << "Blad: Nieprawidlowy indeks (" << index << ")!" << endl;
+        cout << "Blad: Nieprawidlowy indeks (" << index << ")" << endl;
         return;
     }
 
@@ -83,7 +83,7 @@ void DoublyLinkedList::insertAt(int index, int val) {
 
 void DoublyLinkedList::popFront() {
     if (head == nullptr) {
-        std::cout << "Lista jest pusta, nie mozna usunac elementu!" << std::endl;
+        cout << "Lista jest pusta, nie mozna usunac elementu" << endl;
         return;
     }
 
@@ -108,7 +108,7 @@ void DoublyLinkedList::popFront() {
 
 void DoublyLinkedList::popBack() {
     if (tail == nullptr) {
-        std::cout << "Lista jest pusta, nie mozna usunac elementu!" << std::endl;
+        cout << "Lista jest pusta, nie mozna usunac elementu" << endl;
         return;
     }
 
@@ -133,7 +133,7 @@ void DoublyLinkedList::popBack() {
 
 void DoublyLinkedList::removeAt(int index) {
     if (index < 0 || index >= size) {
-        std::cout << "Blad: Nieprawidlowy indeks (" << index << ")!" << std::endl;
+        cout << "Blad: Nieprawidlowy indeks (" << index << ")" << endl;
         return;
     }
 
@@ -166,5 +166,65 @@ void DoublyLinkedList::removeAt(int index) {
 void DoublyLinkedList::clear() {
     while (head != nullptr) {
         popFront();
+    }
+}
+
+void DoublyLinkedList::displayForward() const {
+    if (head == nullptr) {
+        cout << "Lista jest pusta" << endl;
+        return;
+    }
+
+    Iterator it(head);
+    std::cout << "Lista (od poczatku): ";
+    while (it.isValid()) {
+        cout << it.getData() << " ";
+        it.next();
+    }
+    cout << endl;
+}
+
+void DoublyLinkedList::displayBackward() const {
+    if (tail == nullptr) {
+        std::cout << "Lista jest pusta" << std::endl;
+        return;
+    }
+
+    Iterator it(tail);
+    cout << "Lista (od konca): ";
+    while (it.isValid()) {
+        std::cout << it.getData() << " ";
+        it.prev();
+    }
+    cout << endl;
+}
+
+void DoublyLinkedList::displayNext() {
+    if (currentNode == nullptr) {
+        cout << "Lista jest pusta" << endl;
+        return;
+    }
+
+    if (currentNode->next != nullptr) {
+        currentNode = currentNode->next;
+        cout << "Nastepny element: " << currentNode->data << endl;
+    }
+    else {
+        cout << "Koniec listy. Aktualny element to nadal: " << currentNode->data << endl;
+    }
+}
+
+void DoublyLinkedList::displayPrev() {
+    if (currentNode == nullptr) {
+        cout << "Lista jest pusta" << endl;
+        return;
+    }
+
+    if (currentNode->prev != nullptr) {
+        currentNode = currentNode->prev;
+        cout << "Poprzedni element: " << currentNode->data << endl;
+    }
+    else {
+        cout << "Poczatek listy. Aktualny element to nadal: " << currentNode->data << endl;
     }
 }
