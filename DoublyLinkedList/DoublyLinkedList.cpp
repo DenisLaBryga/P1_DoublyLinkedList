@@ -81,6 +81,90 @@ void DoublyLinkedList::insertAt(int index, int val) {
     size++;
 }
 
+void DoublyLinkedList::popFront() {
+    if (head == nullptr) {
+        std::cout << "Lista jest pusta, nie mozna usunac elementu!" << std::endl;
+        return;
+    }
+
+    Node* toDelete = head;
+
+    if (head == tail) {
+        head = nullptr;
+        tail = nullptr;
+        currentNode = nullptr;
+    }
+    else {
+        if (currentNode == head) {
+            currentNode = head->next;
+        }
+        head = head->next;
+        head->prev = nullptr;
+    }
+
+    delete toDelete;
+    size--;
+}
+
+void DoublyLinkedList::popBack() {
+    if (tail == nullptr) {
+        std::cout << "Lista jest pusta, nie mozna usunac elementu!" << std::endl;
+        return;
+    }
+
+    Node* toDelete = tail;
+
+    if (head == tail) {
+        head = nullptr;
+        tail = nullptr;
+        currentNode = nullptr;
+    }
+    else {
+        if (currentNode == tail) {
+            currentNode = tail->prev;
+        }
+        tail = tail->prev;
+        tail->next = nullptr;
+    }
+
+    delete toDelete;
+    size--;
+}
+
+void DoublyLinkedList::removeAt(int index) {
+    if (index < 0 || index >= size) {
+        std::cout << "Blad: Nieprawidlowy indeks (" << index << ")!" << std::endl;
+        return;
+    }
+
+    if (index == 0) {
+        popFront();
+        return;
+    }
+
+    if (index == size - 1) {
+        popBack();
+        return;
+    }
+
+    Node* toDelete = head;
+    for (int i = 0; i < index; i++) {
+        toDelete = toDelete->next;
+    }
+
+    if (currentNode == toDelete) {
+        currentNode = toDelete->next;
+    }
+
+    toDelete->prev->next = toDelete->next;
+    toDelete->next->prev = toDelete->prev;
+
+    delete toDelete;
+    size--;
+}
+
 void DoublyLinkedList::clear() {
-    
+    while (head != nullptr) {
+        popFront();
+    }
 }
